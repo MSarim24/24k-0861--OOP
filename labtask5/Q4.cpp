@@ -1,45 +1,48 @@
 #include <iostream>
+#include <windows.h>
+
 using namespace std;
 
 class Blend {
-    public:
-        void BlendJuice() {
-            cout << "Blending juice..." << endl;
-            for (int i = 0; i < 5; i++) {
-                cout << "Blending..." << endl;
-            }
-            cout << "Juice blended successfully!" << endl;
+public:
+    void blendJuice() {
+        cout << "Selecting fruits..." << endl;
+        cout << "Blending juice" << flush;
+        
+        for (int i = 0; i < 5; ++i) {
+            cout << "." << flush;
+            Sleep(1000);
         }
+        
+        cout << "\nBlending complete!" << endl;
+    }
 };
 
 class Grind {
-    public:
-        void GrindJuice() {
-            cout << "Grinding juice..." << endl;
-            for (int i = 0; i < 5; i++) {
-                cout << "Grinding..." << endl;
-            }
-            cout << "Juice ground successfully!" << endl;
-        }
+public:
+    void grindJuice() {
+        cout << "Grinding the juice..." << endl;
+        Sleep(5000);
+        cout << "Grinding complete!" << endl;
+    }
 };
 
 class JuiceMaker {
-    private:
-        Blend blender;
-        Grind grinder;
-    public:
-        void MakeJuice() {
-            blender.BlendJuice();
-            grinder.GrindJuice();
-        }
+private:
+    Blend blender;
+    Grind grinder;
+
+public:
+    void makeJuice() {
+        cout << "Starting Juice Making Process..." << endl;
+        blender.blendJuice();
+        grinder.grindJuice();
+        cout << "Juice is ready! Enjoy your fresh juice!" << endl;
+    }
 };
 
-void JuiceMakerTest() {
-    JuiceMaker jm;
-    jm.MakeJuice();
-}
-
 int main() {
-    JuiceMakerTest();
+    JuiceMaker juicer;
+    juicer.makeJuice();
     return 0;
 }
